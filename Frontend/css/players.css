@@ -1,0 +1,51 @@
+/* TITULO */
+.section-title {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* FILTRO */
+.filter-select {
+  width: 180px;
+  border-radius: 20px;
+}
+
+/* PLAYER CARD NUEVO */
+.player-card-v2 {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.player-card-v2 img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+/* OVERLAY */
+.player-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+}
+
+.player-info h6 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.player-info span {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* HOVER EFECTO PRO */
+.player-card-v2:hover img {
+  transform: scale(1.1);
+}

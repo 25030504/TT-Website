@@ -1,0 +1,93 @@
+/* TIMELINE */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* línea central */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: #fca311;
+  transform: translateX(-50%);
+}
+
+/* items */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px;
+}
+
+/* izquierda */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+/* derecha */
+.timeline-item:nth-child(even) {
+  left: 50%;
+}
+
+/* contenido */
+.timeline-content {
+  background: #1b263b;
+  padding: 20px;
+  border-radius: 12px;
+  color: #e0e1dd;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* hover */
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* puntos */
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  width: 12px;
+  height: 12px;
+  background: #fca311;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* posición puntos */
+.timeline-item:nth-child(odd)::after {
+  right: -6px;
+}
+
+.timeline-item:nth-child(even)::after {
+  left: -6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 8px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 30px;
+    text-align: left;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .timeline-item::after {
+    left: 0;
+  }
+}
