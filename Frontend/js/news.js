@@ -1,25 +1,8 @@
-const newsData = [
-  {
-    title: "Ma Long wins another title",
-    description: "The legend continues dominating international competitions.",
-    image: "../img/Ma-Long.jpg",
-  },
-  {
-    title: "Hugo Calderano makes history",
-    description: "Breaking records for Latin America in table tennis.",
-    image: "../img/Hugo-Calderano.jpg",
-  },
-  {
-    title: "New training techniques",
-    description: "Players are evolving faster than ever.",
-    image: "../img/strategies.jpg",
-  },
-  {
-    title: "Next generation rising",
-    description: "Young talents are changing the future of the sport.",
-    image: "../img/topPlayers.webp",
-  },
-];
+async function fetchNews() {
+  const res = await fetch("http://localhost:8000/api/news");
+  const data = await res.json();
+  renderNews(data);
+}
 
 // ELEMENTOS
 const container = document.getElementById("newsFeed");
@@ -54,15 +37,16 @@ function renderNews(data) {
 }
 
 // SEARCH
-searchInput.addEventListener("input", () => {
+searchInput.addEventListener("input", async () => {
   const value = searchInput.value.toLowerCase();
 
-  const filtered = newsData.filter((n) =>
-    n.title.toLowerCase().includes(value),
-  );
+  const res = await fetch("http://localhost:8000/api/news");
+  const data = await res.json();
+
+  const filtered = data.filter((n) => n.title.toLowerCase().includes(value) || n.description.toLowerCase().includes(value));
 
   renderNews(filtered);
 });
 
 // INIT
-renderNews(newsData);
+fetchNews();
