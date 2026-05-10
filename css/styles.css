@@ -1,0 +1,198 @@
+body {
+  background-color: #e0e1dd;
+}
+
+/* NAVBAR */
+.navbar-custom {
+  background-color: #0d1b2a;
+  padding: 15px 0;
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+.navbar-custom .nav-link {
+  color: #e0e1dd;
+  margin: 0 12px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.navbar-custom .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #fca311;
+  transition: 0.3s;
+}
+
+.navbar-custom .nav-link:hover::after {
+  width: 100%;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #fca311;
+}
+
+.nav-link.active {
+  color: #fca311 !important;
+}
+
+.search-icon svg {
+  transition: 0.3s;
+}
+
+.search-icon:hover svg {
+  color: #fca311;
+  transform: scale(1.1);
+}
+
+/* BOTONES */
+.btn-outline-light,
+.btn-warning {
+  border-radius: 20px;
+  padding: 5px 15px;
+}
+
+/* CAROUSEL */
+.carousel-img {
+  height: 500px;
+  object-fit: cover;
+}
+
+.carousel-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.carousel-caption {
+  bottom: 20%;
+}
+
+.carousel-caption h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* NEWS */
+.news-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.news-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* FOOTER MINIMALISTA */
+.footer-minimal {
+  background-color: #0d1b2a;
+  color: #e0e1dd;
+  padding: 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.footer-copy {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.footer-minimal a {
+  color: #e0e1dd;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.footer-minimal a:hover {
+  color: #fca311;
+}
+
+/* TOURNAMENTS */
+.tournament-card {
+  background: #1b263b;
+  color: #e0e1dd;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tournament-card h5 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tournament-date {
+  color: #fca311;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.tournament-location {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.tournament-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* HISTORY HERO */
+.history-hero {
+  height: 300px;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../img/match.avif") center/cover;
+  color: white;
+}
+
+.history-hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.history-hero p {
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .navbar-nav {
+    margin: 20px 0;
+  }
+
+  .d-flex {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .carousel-img {
+    height: 300px;
+  }
+}

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Players | The Kinetic Court</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/players.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="../index.html">
+          THE KINETIC COURT
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav mx-auto text-center">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./history.html">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Players</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./news.html">News</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2">
+            <a href="./login.html" class="btn btn-outline-light btn-sm"
+              >Login</a
+            >
+            <a href="./singup.html" class="btn btn-warning btn-sm fw-bold"
+              >Sign Up</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="container my-5">
+      <!-- HEADER SIMPLE -->
+      <div
+        class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3"
+      >
+        <h2 class="section-title">Top Players</h2>
+
+        <!-- FILTRO (visual por ahora) -->
+        <select id="regionFilter" class="form-select filter-select">
+          <option value="all">All</option>
+          <option value="asia">Asia</option>
+          <option value="europe">Europe</option>
+          <option value="america">America</option>
+        </select>
+
+        <input
+          type="text"
+          id="searchInput"
+          class="form-control search-input"
+          placeholder="Search player..."
+        />
+      </div>
+
+      <!-- GRID PLAYERS -->
+      <div class="row g-4">
+        <!-- PLAYER -->
+        <div
+          class="col-md-4 col-lg-3 player"
+          data-name="ma long"
+          data-region="asia"
+        >
+          <div class="player-card-v2">
+            <img src="../img/Ma-Long.jpg" />
+            <div class="player-info">
+              <h6>Ma Long</h6>
+              <span>China</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 col-lg-3 player"
+          data-name="hugo calderano"
+          data-region="america"
+        >
+          <div class="player-card-v2">
+            <img src="../img/Hugo-Calderano.jpg" />
+            <div class="player-info">
+              <h6>Hugo Calderano</h6>
+              <span>Brazil</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 col-lg-3 player"
+          data-name="fan zhendong"
+          data-region="asia"
+        >
+          <div class="player-card-v2">
+            <img src="../img/5179.webp" />
+            <div class="player-info">
+              <h6>Fan Zhendong</h6>
+              <span>China</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 col-lg-3 player"
+          data-name="tomokazu harimoto"
+          data-region="asia"
+        >
+          <div class="player-card-v2">
+            <img src="../img/harimoto.png" />
+            <div class="player-info">
+              <h6>Tomokazu Harimoto</h6>
+              <span>Japan</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 col-lg-3 player"
+          data-name="dimitrij ovtcharov"
+          data-region="europe"
+        >
+          <div class="player-card-v2">
+            <img src="../img/dimitrij.jpg" />
+            <div class="player-info">
+              <h6>Dimitrij Ovtcharov</h6>
+              <span>Germany</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 col-lg-3 player"
+          data-name="sun yingsha"
+          data-region="asia"
+        >
+          <div class="player-card-v2">
+            <img src="../img/sun-yinsha.webp" />
+            <div class="player-info">
+              <h6>Sun Yingsha</h6>
+              <span>China</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-minimal">
+      <div class="container">
+        <div class="row align-items-center text-center text-md-start">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5 class="footer-brand">THE KINETIC COURT</h5>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0 text-center">
+            <p class="footer-copy">© 2026 All rights reserved</p>
+          </div>
+
+          <div class="col-md-4 text-center text-md-end">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/players.js"></script>
+  </body>
+</html>
