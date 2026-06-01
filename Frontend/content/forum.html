@@ -1,266 +1,223 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Kinetic Court Forum</title>
-
-    <!-- Bootstrap -->
+    <title>Forum — The Kinetic Court</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-
-    <!-- CSS -->
+    <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/forum.css" />
   </head>
-
   <body>
+
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-custom navbar-dark sticky-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">THE KINETIC COURT</a>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-        >
+        <a class="navbar-brand fw-bold" href="../index.html">THE KINETIC COURT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarContent">
-          <!-- MENU -->
           <ul class="navbar-nav mx-auto text-center">
-            <li class="nav-item">
-              <a class="nav-link" href="../index.html">Home</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="./history.html">History</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="./players.html">Players</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="./news.html">News</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Forum</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="./history.html">History</a></li>
+            <li class="nav-item"><a class="nav-link" href="./players.html">Players</a></li>
+            <li class="nav-item"><a class="nav-link" href="./news.html">News</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./forum.html">Forum</a></li>
           </ul>
-
-          <!-- RIGHT -->
-          <div class="d-flex align-items-center gap-2">
-            <a href="./login.html" class="btn btn-outline-light btn-sm">
-              Login
-            </a>
-
-            <a href="./signup.html" class="btn btn-warning btn-sm fw-bold">
-              Sign Up
-            </a>
-          </div>
+          <div class="d-flex align-items-center gap-2" id="nav-auth-area"></div>
         </div>
       </div>
     </nav>
 
     <!-- HERO -->
-    <section class="forum-hero d-flex align-items-center">
-      <div class="container text-center">
-        <h1>THE KINETIC COURT FORUM</h1>
-        <p>
-          Join discussions about professional table tennis, players,
-          tournaments, and training.
-        </p>
+    <section class="forum-hero">
+      <div class="container">
+        <div class="forum-hero-inner">
+          <div>
+            <span class="forum-hero-badge">🏓 Community</span>
+            <h1 class="forum-hero-title">The Forum</h1>
+            <p class="forum-hero-sub">Discuss techniques, results, gear and everything table tennis.</p>
+          </div>
+          <div class="forum-hero-user" id="hero-user-card"></div>
+        </div>
       </div>
     </section>
 
     <!-- MAIN -->
-    <main class="container my-5">
-      <!-- CREATE POST -->
-      <section class="create-post mb-5">
-        <div class="forum-box">
-          <h3 class="mb-4">Create New Discussion</h3>
+    <main class="container forum-main">
+      <div class="row g-4">
 
-          <form>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control forum-input"
-                placeholder="Discussion title"
-              />
+        <!-- FEED -->
+        <div class="col-lg-8">
+
+          <!-- COMPOSE -->
+          <div class="forum-compose-card">
+            <div class="forum-compose-header">
+              <div class="forum-avatar" id="compose-avatar">?</div>
+              <div class="forum-compose-body">
+                <textarea id="content" class="forum-textarea"
+                  placeholder="What happened on the table today? Share your technique, result or question..."
+                  maxlength="500"></textarea>
+                <div class="forum-compose-footer">
+                  <div class="forum-tags">
+                    <button class="forum-tag active" onclick="setTag(this,'general')">💬 General</button>
+                    <button class="forum-tag" onclick="setTag(this,'technique')">🔄 Technique</button>
+                    <button class="forum-tag" onclick="setTag(this,'tournament')">🏆 Tournament</button>
+                    <button class="forum-tag" onclick="setTag(this,'gear')">🛒 Gear</button>
+                  </div>
+                  <div class="forum-compose-actions">
+                    <span class="forum-char-count" id="char-count">500</span>
+                    <button class="btn-forum-post" onclick="createPost()">Post</button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="mb-3">
-              <textarea
-                class="form-control forum-input"
-                rows="5"
-                placeholder="Share your thoughts..."
-              ></textarea>
+          <!-- FILTROS -->
+          <div class="forum-filters">
+            <button class="forum-filter active" onclick="filterPosts(this,'')">All</button>
+            <button class="forum-filter" onclick="filterPosts(this,'general')">💬 General</button>
+            <button class="forum-filter" onclick="filterPosts(this,'technique')">🔄 Technique</button>
+            <button class="forum-filter" onclick="filterPosts(this,'tournament')">🏆 Tournament</button>
+            <button class="forum-filter" onclick="filterPosts(this,'gear')">🛒 Gear</button>
+          </div>
+
+          <!-- POSTS -->
+          <div id="posts">
+            <div class="forum-loading">
+              <div class="spinner-border text-warning" role="status"></div>
+              <p>Loading posts...</p>
             </div>
+          </div>
 
-            <button class="btn btn-warning fw-bold px-4">
-              Post Discussion
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="col-lg-4">
+          <div class="forum-widget">
+            <h6 class="forum-widget-title">👤 Your Profile</h6>
+            <div class="fw-profile">
+              <div class="fw-avatar" id="sidebar-avatar">?</div>
+              <div>
+                <div class="fw-name" id="sidebar-name">—</div>
+                <div class="fw-email" id="sidebar-email">—</div>
+              </div>
+            </div>
+            <div class="fw-stats">
+              <div class="fw-stat"><span id="stat-posts">0</span><small>Posts</small></div>
+              <div class="fw-stat"><span>🥈</span><small>Rank</small></div>
+            </div>
+            <button class="btn-forum-logout w-100 mt-3" onclick="logout()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                <path d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+              </svg>
+              Sign Out
             </button>
-          </form>
-        </div>
-      </section>
+          </div>
 
-      <!-- FORUM POSTS -->
-      <section>
-        <h2 class="text-center mb-4">LATEST DISCUSSIONS</h2>
+          <div class="forum-widget">
+            <h6 class="forum-widget-title">🔥 Hot Topics</h6>
+            <ul class="fw-hot-list">
+              <li><span class="fw-hot-num">1</span>Ma Long vs Fan Zhendong</li>
+              <li><span class="fw-hot-num">2</span>Best rubbers 2025</li>
+              <li><span class="fw-hot-num">3</span>Short serve technique</li>
+              <li><span class="fw-hot-num">4</span>Spain Open results</li>
+              <li><span class="fw-hot-num">5</span>Tenergy vs Dignics</li>
+            </ul>
+          </div>
 
-        <div class="row">
-          <!-- POST 1 -->
-          <div class="col-lg-6 mb-4">
-            <div class="forum-card">
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="forum-category">Players</span>
-                <span class="forum-date">2 hours ago</span>
+          <div class="forum-widget">
+            <h6 class="forum-widget-title">📅 Upcoming</h6>
+            <div class="fw-tournament-list">
+              <div class="fw-tournament">
+                <div class="fw-t-name">WTT Champions Doha</div>
+                <div class="fw-t-date">Jan 7–11, 2026 · Qatar</div>
               </div>
-
-              <h4 class="mt-3">
-                Is Hugo Calderano entering his prime?
-              </h4>
-
-              <p>
-                Hugo has been showing incredible consistency in recent
-                tournaments. Do you think he can become world number one?
-              </p>
-
-              <div
-                class="d-flex justify-content-between align-items-center mt-4"
-              >
-                <div class="forum-user">
-                  Posted by <strong>SebastianTT</strong>
-                </div>
-
-                <button class="btn btn-outline-light btn-sm">
-                  View Thread
-                </button>
+              <div class="fw-tournament">
+                <div class="fw-t-name">World Championships Finals</div>
+                <div class="fw-t-date">Apr 28–May 10 · London</div>
+              </div>
+              <div class="fw-tournament">
+                <div class="fw-t-name">Para Elite Beijing</div>
+                <div class="fw-t-date">Jun 24–28, 2026 · China</div>
               </div>
             </div>
           </div>
 
-          <!-- POST 2 -->
-          <div class="col-lg-6 mb-4">
-            <div class="forum-card">
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="forum-category">Training</span>
-                <span class="forum-date">5 hours ago</span>
-              </div>
-
-              <h4 class="mt-3">
-                Best drills for improving backhand speed?
-              </h4>
-
-              <p>
-                I've been struggling with quick backhand exchanges. Any training
-                routines or exercises you recommend?
-              </p>
-
-              <div
-                class="d-flex justify-content-between align-items-center mt-4"
-              >
-                <div class="forum-user">
-                  Posted by <strong>SpinMaster</strong>
-                </div>
-
-                <button class="btn btn-outline-light btn-sm">
-                  View Thread
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- POST 3 -->
-          <div class="col-lg-6 mb-4">
-            <div class="forum-card">
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="forum-category">Tournaments</span>
-                <span class="forum-date">Yesterday</span>
-              </div>
-
-              <h4 class="mt-3">
-                Predictions for WTT Champions Doha 2026
-              </h4>
-
-              <p>
-                Which players do you think will dominate the tournament this
-                year? My pick is Fan Zhendong.
-              </p>
-
-              <div
-                class="d-flex justify-content-between align-items-center mt-4"
-              >
-                <div class="forum-user">
-                  Posted by <strong>TopSpinPro</strong>
-                </div>
-
-                <button class="btn btn-outline-light btn-sm">
-                  View Thread
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- POST 4 -->
-          <div class="col-lg-6 mb-4">
-            <div class="forum-card">
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="forum-category">Equipment</span>
-                <span class="forum-date">2 days ago</span>
-              </div>
-
-              <h4 class="mt-3">
-                Best rubber for offensive players?
-              </h4>
-
-              <p>
-                I'm looking for a faster rubber with strong spin capabilities.
-                Any recommendations for intermediate players?
-              </p>
-
-              <div
-                class="d-flex justify-content-between align-items-center mt-4"
-              >
-                <div class="forum-user">
-                  Posted by <strong>LoopKing</strong>
-                </div>
-
-                <button class="btn btn-outline-light btn-sm">
-                  View Thread
-                </button>
-              </div>
-            </div>
+          <div class="forum-widget forum-widget-rules">
+            <h6 class="forum-widget-title">📋 Forum Rules</h6>
+            <ol class="fw-rules">
+              <li>Respect all members</li>
+              <li>Keep it about table tennis</li>
+              <li>No spam or advertising</li>
+              <li>Cite your sources</li>
+            </ol>
           </div>
         </div>
-      </section>
+
+      </div>
     </main>
 
     <!-- FOOTER -->
-    <footer class="footer-minimal">
+    <footer class="footer-minimal mt-5">
       <div class="container">
         <div class="row align-items-center text-center text-md-start">
-          <div class="col-md-4 mb-3 mb-md-0">
-            <h5 class="footer-brand">THE KINETIC COURT</h5>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0 text-center">
-            <p class="footer-copy">© 2026 All rights reserved</p>
-          </div>
-
+          <div class="col-md-4 mb-3 mb-md-0"><h5 class="footer-brand">THE KINETIC COURT</h5></div>
+          <div class="col-md-4 mb-3 mb-md-0 text-center"><p class="footer-copy">© 2026 All rights reserved</p></div>
           <div class="col-md-4 text-center text-md-end">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Contact</a>
+            <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- JS -->
-    <script src="./js/bootstrap.bundle.min.js"></script>
+    <!-- MODAL: EDITAR POST -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content forum-modal">
+          <div class="forum-modal-header">
+            <h5 class="forum-modal-title">✏️ Edit Post</h5>
+            <button type="button" class="forum-modal-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="forum-modal-body">
+            <textarea id="edit-content" class="edit-textarea" maxlength="500"
+              placeholder="Edit your post..."></textarea>
+            <div class="edit-footer">
+              <span class="edit-char-count" id="edit-char-count">500</span>
+              <div class="d-flex gap-2">
+                <button class="btn-modal-cancel" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn-modal-confirm" id="edit-save-btn" onclick="saveEdit()">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: CONFIRMAR ELIMINACIÓN -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content forum-modal">
+          <div class="forum-modal-header">
+            <h5 class="forum-modal-title">🗑️ Delete Post</h5>
+            <button type="button" class="forum-modal-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="forum-modal-body">
+            <p class="delete-warning">Are you sure? This action cannot be undone.</p>
+            <div class="d-flex gap-2 justify-content-end">
+              <button class="btn-modal-cancel" data-bs-dismiss="modal">Cancel</button>
+              <button class="btn-modal-danger" id="delete-confirm-btn" onclick="confirmDelete()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" id="current-tag" value="general">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/forum.js"></script>
   </body>
 </html>

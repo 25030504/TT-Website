@@ -13,5 +13,8 @@
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
     "gh-pages": "^6.3.0"
+  },
+  "dependencies": {
+    "servor": "^4.0.2"
   }
 }

@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      servor:
+        specifier: ^4.0.2
+        version: 4.0.2
     devDependencies:
       gh-pages:
         specifier: ^6.3.0
@@ -177,6 +181,10 @@ packages:
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
+    hasBin: true
+
+  servor@4.0.2:
+    resolution: {integrity: sha512-MlmQ5Ntv4jDYUN060x/KEmN7emvIqKMZ9OkM+nY8Bf2+KkyLmGsTqWLyAN2cZr5oESAcH00UanUyyrlS1LRjFw==}
     hasBin: true
 
   slash@3.0.0:
@@ -359,6 +367,8 @@ snapshots:
       queue-microtask: 1.2.3
 
   semver@6.3.1: {}
+
+  servor@4.0.2: {}
 
   slash@3.0.0: {}
 
