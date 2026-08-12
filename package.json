@@ -1,11 +1,10 @@
 {
-  "name": "TT-Website",
+  "name": "tt-website",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Table Tennis website with Laravel backend and static frontend",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d  Frontend/"
+    "deploy": "gh-pages -d Frontend/"
   },
   "keywords": [],
   "author": "",
